@@ -43,13 +43,26 @@ if choice == 'Profiling':
 if choice == 'Modeling':
     st.title('Machine Learning')
     target = st.selectbox('Select the target variable', df.columns)
-    setup(df, target=target, session_id=123, silent=True, html=False, log_experiment=True, experiment_name='automl')
-    setup_df = pull()
-    st.info('This is the ML experiment settings')
-    st.dataframe(setup_df)
-    best_model = compare_models()
-    st.info('This is the best model')
-    st.dataframe(best_model)
-    st.info('This is the model performance')
-    best_model
+    st.write('The target variable is:', target)
+    if st.button('Train Model'):
+        st.success('Model trained successfully')
+        setup(df, target=target)
+        setup_df = pull()
+        st.info('This is the ML experiment settings')
+        st.dataframe(setup_df)
+        best_model = compare_models()
+        st.info('This is the best model')
+        st.dataframe(best_model)
+        st.info('This is the model performance')
+        best_model
+        save_model(best_model, 'best_model')
+
+if choice == 'Download':
+    st.header('Download the best model')
+    st.write('Please click the button below to download the best model')
+    if st.button('Download'):
+        st.markdown(get_model('best_model'))
+        st.success('Model downloaded successfully')
+
+
 
