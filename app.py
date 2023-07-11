@@ -3,6 +3,7 @@ import pandas as pd
 import os
 import pandas_profiling 
 from streamlit_pandas_profiling import st_profile_report
+from pycaret.regression import *
 
 with st.sidebar:
     st.image('image/logo.png', width=300)
@@ -38,3 +39,17 @@ if choice == 'Profiling':
     st.header('Automated Exploratory Data Analysis')
     profile_report = df.profile_report()
     st_profile_report(profile_report)
+
+if choice == 'Modeling':
+    st.title('Machine Learning')
+    target = st.selectbox('Select the target variable', df.columns)
+    setup(df, target=target, session_id=123, silent=True, html=False, log_experiment=True, experiment_name='automl')
+    setup_df = pull()
+    st.info('This is the ML experiment settings')
+    st.dataframe(setup_df)
+    best_model = compare_models()
+    st.info('This is the best model')
+    st.dataframe(best_model)
+    st.info('This is the model performance')
+    best_model
+
