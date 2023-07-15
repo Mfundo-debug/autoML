@@ -1,4 +1,4 @@
-# autoML
+# autoML Streamlit App (! deployed)
 
 ### Overview
 
@@ -7,4 +7,4 @@
 -   [x] EDA is done using Pandas Profiling
 -   [x] Navigates to the best model based on the metric selected
 -   [x] Saves the best model in the local directory
--   [ ] Please dont forget to star and fork the repo as there are more updates coming soon!
+-   [ ] Please do not forget to star and fork the repo as there are more updates coming soon!
